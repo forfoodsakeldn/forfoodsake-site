@@ -3,7 +3,7 @@
 # 2) In Netlify, add a GitHub OAuth provider (see SETUP-GUIDE.md, step 4).
 backend:
   name: github
-  repo: YOUR-GITHUB-USERNAME/forfoodsake-site
+  repo: forfoodsakeldn/forfoodsake-site
   branch: main
   commit_messages:
     create: "Add {{collection}} “{{slug}}”"
