@@ -10,8 +10,8 @@ backend:
     update: "Update {{collection}} “{{slug}}”"
     delete: "Delete {{collection}} “{{slug}}”"
 
-site_url: https://forfoodsake.co.uk
-display_url: https://forfoodsake.co.uk
+site_url: https://forfoodsake-ldn.netlify.app
+display_url: https://forfoodsake-ldn.netlify.app
 locale: en
 
 media_folder: static/images/uploads
