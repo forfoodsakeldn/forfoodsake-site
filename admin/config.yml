@@ -55,7 +55,14 @@ collections:
       - { label: Serves, name: serves, widget: string, hint: "A number (e.g. 4) or text (e.g. Makes 12)" }
       - { label: Difficulty, name: difficulty, widget: select, options: [Easy, Medium, Bit of a project], default: Easy }
       - { label: Video link (TikTok or Instagram), name: video, widget: string, required: false }
-      - { label: Ingredients, name: ingredients, widget: text, hint: "Paste or type the whole list – one ingredient per line. Bullet points and dashes are removed automatically." }
+      - label: Ingredients
+        name: ingredients
+        widget: list
+        label_singular: ingredient group
+        summary: "{{fields.heading}}"
+        fields:
+          - { label: Group heading, name: heading, widget: string, required: false, hint: "e.g. For the broth – leave blank if the recipe has just one list" }
+          - { label: Ingredients, name: items, widget: text, hint: "Paste the list – one ingredient per line" }
       - { label: Method, name: steps, widget: text, hint: "Paste or type the whole method – one step per line. Step numbers are added automatically." }
       - { label: Tips, name: tips, widget: text, required: false }
 
