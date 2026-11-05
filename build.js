@@ -21,6 +21,14 @@ const copyDir = (src, dest) => {
     e.isDirectory() ? copyDir(s, d) : fs.copyFileSync(s, d);
   }
 };
+// Ingredients and method can be one pasted block of text (one per line) or an older-style list.
+const toLines = (v) => (Array.isArray(v) ? v : String(v ?? '').split(/\r?\n/))
+  .map((s) => String(s).replace(/^\s*(?:[-–•*·▪◦]\s*|step\s*\d+\s*[:.)–-]?\s*|\d+[.)]\s+)/i, '').trim())
+  .filter(Boolean);
+// Ingredient groups: [{ heading, items }] from the editor, or a plain list/text from older recipes.
+const toGroups = (v) => (Array.isArray(v) && v.some((g) => g && typeof g === 'object')
+  ? v.map((g) => ({ heading: (g.heading || '').trim(), items: toLines(g.items) }))
+  : [{ heading: '', items: toLines(v) }]).filter((g) => g.items.length);
 const toSlug = (s) => String(s).toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 const CATEGORIES = [
@@ -41,6 +49,8 @@ const recipes = readDir(path.join(ROOT, 'content/recipes'))
   .filter((r) => r.title)
   .map((r) => ({
     ...r,
+    ingredients: toGroups(r.ingredients),
+    steps: toLines(r.steps),
     mins: (Number(r.prep) || 0) + (Number(r.cook) || 0),
     tint: tintFor(r.category),
     collections: r.collections || [],
@@ -191,7 +201,7 @@ function home() {
 ${socialBand()}` });
 }
 
-const listItem = (r) => `<li data-category="${esc(r.category)}" data-mins="${r.mins}" data-date="${esc(r.date)}" data-search="${esc((r.title + ' ' + (r.ingredients || []).join(' ')).toLowerCase())}">
+const listItem = (r) => `<li data-category="${esc(r.category)}" data-mins="${r.mins}" data-date="${esc(r.date)}" data-search="${esc((r.title + ' ' + r.ingredients.map((g) => g.items.join(' ')).join(' ')).toLowerCase())}">
         <a href="${r.url}">
           ${thumb(r, 'list-thumb')}
           <span class="list-text"><span class="list-title">${esc(r.title)}</span><span class="list-meta">${esc(metaText(r))}</span></span>
@@ -259,7 +269,7 @@ function recipePage(r) {
     <div class="recipe-cols">
       <div>
         <h3>Ingredients</h3>
-        ${(r.ingredients || []).map((i) => `<label class="ing"><input type="checkbox"><span>${esc(i)}</span></label>`).join('\n        ')}
+        ${r.ingredients.map((g) => (g.heading ? `<h4 style="margin:20px 0 4px;font-family:'Playfair Display',Georgia,serif;font-size:18px;color:#4A2C20">${esc(g.heading)}</h4>` : '') + g.items.map((i) => `<label class="ing"><input type="checkbox"><span>${esc(i)}</span></label>`).join('')).join('')}
       </div>
       <div>
         <h3>Method</h3>
