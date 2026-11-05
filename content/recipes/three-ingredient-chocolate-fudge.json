@@ -1,0 +1,32 @@
+{
+  "title": "Three-ingredient chocolate fudge",
+  "date": "2026-10-28",
+  "category": "Sweet treats",
+  "collections": [
+    "Christmas",
+    "Diwali"
+  ],
+  "featured": true,
+  "image": "",
+  "description": "[One-line description: what makes this dish special and when you'd make it.]",
+  "prep": 10,
+  "cook": 0,
+  "serves": "Makes 16",
+  "difficulty": "Easy",
+  "video": "https://www.tiktok.com/@forfoodsake_ldn",
+  "ingredients": [
+    "[Quantity] [ingredient 1]",
+    "[Quantity] [ingredient 2]",
+    "[Quantity] [ingredient 3]",
+    "[Quantity] [ingredient 4]",
+    "[Quantity] [ingredient 5]",
+    "[Quantity] [ingredient 6]"
+  ],
+  "steps": [
+    "[Step 1: one clear action, with timings and what to look for.]",
+    "[Step 2: one clear action, with timings and what to look for.]",
+    "[Step 3: one clear action, with timings and what to look for.]",
+    "[Step 4: one clear action, with timings and what to look for.]"
+  ],
+  "tips": "[Storage, make-ahead notes and any swaps.]"
+}

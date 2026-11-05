@@ -1,0 +1,107 @@
+# Decap CMS settings – the editor at yoursite/admin
+# 1) Replace YOUR-GITHUB-USERNAME below with the GitHub account that holds this site.
+# 2) In Netlify, add a GitHub OAuth provider (see SETUP-GUIDE.md, step 4).
+backend:
+  name: github
+  repo: YOUR-GITHUB-USERNAME/forfoodsake-site
+  branch: main
+  commit_messages:
+    create: "Add {{collection}} “{{slug}}”"
+    update: "Update {{collection}} “{{slug}}”"
+    delete: "Delete {{collection}} “{{slug}}”"
+
+site_url: https://forfoodsake.co.uk
+display_url: https://forfoodsake.co.uk
+locale: en
+
+media_folder: static/images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: recipes
+    label: Recipes
+    label_singular: Recipe
+    folder: content/recipes
+    format: json
+    extension: json
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} – {{category}}"
+    sortable_fields: [date, title, category]
+    view_filters:
+      - { label: Featured on homepage, field: featured, pattern: true }
+    fields:
+      - { label: Recipe name, name: title, widget: string }
+      - { label: Date published, name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "DD MMM YYYY", time_format: false }
+      - label: Category
+        name: category
+        widget: select
+        options: [Quick dinners, Comfort food, Sweet treats, Meat-free, Healthy bowls, Party food, Festive]
+      - label: Collections
+        name: collections
+        widget: relation
+        collection: collections
+        search_fields: [title]
+        value_field: title
+        display_fields: [title]
+        multiple: true
+        required: false
+        hint: Optional – add this recipe to one or more collections.
+      - { label: Show in the homepage carousel, name: featured, widget: boolean, default: false, required: false }
+      - { label: Main photo, name: image, widget: image, required: false, hint: "Landscape photos look best." }
+      - { label: Short description, name: description, widget: text, required: false, hint: "One or two sentences shown under the title." }
+      - { label: Prep time (mins), name: prep, widget: number, value_type: int, min: 0 }
+      - { label: Cook time (mins), name: cook, widget: number, value_type: int, min: 0 }
+      - { label: Serves, name: serves, widget: string, hint: "A number (e.g. 4) or text (e.g. Makes 12)" }
+      - { label: Difficulty, name: difficulty, widget: select, options: [Easy, Medium, Bit of a project], default: Easy }
+      - { label: Video link (TikTok or Instagram), name: video, widget: string, required: false }
+      - { label: Ingredients, name: ingredients, widget: list, field: { label: Ingredient, name: item, widget: string }, hint: "One ingredient per line, e.g. 200g dried ramen noodles" }
+      - { label: Method, name: steps, widget: list, field: { label: Step, name: step, widget: text } }
+      - { label: Tips, name: tips, widget: text, required: false }
+
+  - name: collections
+    label: Collections
+    label_singular: Collection
+    folder: content/collections
+    format: json
+    extension: json
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Name, name: title, widget: string }
+      - { label: Order on the page, name: order, widget: number, value_type: int, default: 10 }
+      - { label: Short description (on the tile), name: blurb, widget: string }
+      - { label: Intro (on the collection page), name: intro, widget: text }
+      - { label: Tile colour, name: colour, widget: color, default: "#EBDDC8" }
+
+  - name: settings
+    label: Site settings
+    editor: { preview: false }
+    files:
+      - label: About page
+        name: about
+        file: content/settings/about.json
+        format: json
+        fields:
+          - { label: Intro line, name: intro, widget: text }
+          - { label: Portrait photo, name: photo, widget: image }
+          - { label: Tags under the photo, name: tags, widget: list, field: { label: Tag, name: tag, widget: string } }
+          - { label: "How it all started (paragraphs)", name: story, widget: list, field: { label: Paragraph, name: paragraph, widget: text } }
+          - label: Travel postcards
+            name: places
+            widget: list
+            fields:
+              - { label: Place, name: name, widget: string }
+              - { label: Country code (stamp), name: code, widget: string }
+              - { label: Must-eat dish, name: dish, widget: string }
+              - { label: Year, name: year, widget: string }
+              - { label: Photo, name: photo, widget: image, required: false }
+      - label: Contact and social links
+        name: site
+        file: content/settings/site.json
+        format: json
+        fields:
+          - { label: Instagram link, name: instagram, widget: string }
+          - { label: TikTok link, name: tiktok, widget: string }
+          - { label: Handle, name: handle, widget: string }
+          - { label: Email, name: email, widget: string }

@@ -1,0 +1,69 @@
+{
+  "intro": "I cook the food I actually want to eat – and make it easy for you too. Welcome to ForFoodSake, my little corner of the internet for easy, flavour-packed recipes from my London kitchen.",
+  "photo": "/images/natasha.jpg",
+  "tags": [
+    "London home cook",
+    "Resident creator at Good Food"
+  ],
+  "story": [
+    "I’m a London-based home cook who started ForFoodSake in 2017 to share the dishes I was making on busy weeknights – food that’s full of flavour but never fussy. What began as a few videos for friends has grown into a community of food lovers on Instagram and TikTok.",
+    "My cooking is shaped by my family’s kitchen, the city I live in and the places I travel to. Today I’m also a resident creator at Good Food. Every recipe here is tested in my own kitchen, so you can cook it with confidence.",
+    "I’m so happy you’re here and hope you enjoy following along for the journey ahead."
+  ],
+  "places": [
+    {
+      "name": "Zanzibar",
+      "code": "TZ",
+      "dish": "[dish I loved]",
+      "year": "[Year]"
+    },
+    {
+      "name": "Kenya",
+      "code": "KE",
+      "dish": "[dish I loved]",
+      "year": "[Year]"
+    },
+    {
+      "name": "Ibiza",
+      "code": "ES",
+      "dish": "[dish I loved]",
+      "year": "[Year]"
+    },
+    {
+      "name": "New York",
+      "code": "US",
+      "dish": "[dish I loved]",
+      "year": "[Year]"
+    },
+    {
+      "name": "Dubai",
+      "code": "AE",
+      "dish": "[dish I loved]",
+      "year": "[Year]"
+    },
+    {
+      "name": "Amsterdam",
+      "code": "NL",
+      "dish": "[dish I loved]",
+      "year": "[Year]"
+    },
+    {
+      "name": "Greece",
+      "code": "GR",
+      "dish": "[dish I loved]",
+      "year": "[Year]"
+    },
+    {
+      "name": "India",
+      "code": "IN",
+      "dish": "[dish I loved]",
+      "year": "[Year]"
+    },
+    {
+      "name": "Portugal",
+      "code": "PT",
+      "dish": "[dish I loved]",
+      "year": "[Year]"
+    }
+  ]
+}
